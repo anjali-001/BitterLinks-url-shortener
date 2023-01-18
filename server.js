@@ -34,7 +34,7 @@ if (process.env.NODE_ENV === "production") {
     app.use(express.static("client/build"));
 }
 
-mongoose.connect(process.env.MONGO_URI || process.env.DB_CONNECT, {useNewUrlParser: true, useUnifiedTopology: true })
+mongoose.connect("mongodb+srv://anjaliproject:llamadatabase@cluster0.uzaoh.gcp.mongodb.net/?retryWrites=true&w=majority", {useNewUrlParser: true, useUnifiedTopology: true })
 .then(()=>console.log('Mongodb connected'))
 .catch(err=>console.log('Error:', err))
 //Middleware
