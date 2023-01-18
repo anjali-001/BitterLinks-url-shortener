@@ -28,7 +28,7 @@ router.post("/signup", (req, res) => {
         console.log(resp);
         res.send({ user: resp, token: token, error: null });
       })
-      .catch((err) => res.status(400).send(err));
+      .catch((err) =>{ res.status(400).send(err)});
   });
 });
 // router.post("/signup", async (req, res) => {
