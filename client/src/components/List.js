@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import axios from "axios";
-import { getToken } from "../utils/common";
+import { backendBaseUrl, getToken } from "../utils/common";
 import ListItem from "./ListItem";
 import Navbar from "./Navbar";
 
@@ -14,7 +14,7 @@ export class List extends Component {
   }
 
   handleDelete = (id) => {
-    axios.post("/api/shorten/delete",{id:id},{
+    axios.post(`${backendBaseUrl}/api/shorten/delete`,{id:id},{
         headers: { "auth-token": getToken() }    })
     .then(res=>{console.log('res', res)
     this.handleDetails()})
@@ -26,7 +26,7 @@ export class List extends Component {
   }
   handleDetails=()=>{
     axios
-      .get("/api/shorten/list", {
+      .get(`${backendBaseUrl}/api/shorten/list`, {
         headers: { "auth-token": getToken() },
       })
       .then((res) => {

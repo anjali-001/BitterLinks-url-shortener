@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import axios from "axios";
 import { Link, withRouter } from "react-router-dom";
-import { setUserSession } from "../utils/common";
+import { backendBaseUrl, setUserSession } from "../utils/common";
 import Loader from "react-loader-spinner";
 
 class Signup extends Component {
@@ -50,7 +50,7 @@ validate = () => {
     }
     this.setState({ isLoading: true });
     axios
-      .post("/api/user/signup", {
+      .post(`${backendBaseUrl}/api/user/signup`, {
         name: this.state.name,
         email: this.state.email,
         password: this.state.password,

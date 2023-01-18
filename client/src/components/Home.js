@@ -1,7 +1,7 @@
 import React,{Component} from 'react';
 import {Link} from 'react-router-dom';
 import axios from 'axios';
-import {getToken } from '../utils/common'
+import {backendBaseUrl, getToken } from '../utils/common'
 import Navbar from './Navbar'
 
 class Home extends Component {
@@ -24,7 +24,7 @@ class Home extends Component {
 
     handleSubmit = (e) => {
         e.preventDefault();
-        axios.post("/api/shorten",{
+        axios.post(`${backendBaseUrl}/api/shorten`,{
             url:this.state.url,
             hash:this.state.hash
         },{headers:{'auth-token':getToken()}})
@@ -32,11 +32,11 @@ class Home extends Component {
             if(res.data.message){
                 this.setState({
                     message:res.data.message,
-                    link: `https://bitterlinks.herokuapp.com/${res.data.url.hash}`
+                    link: `https://bitterlink-urlshortener.onrender.com/${res.data.url.hash}`
                 })
             }else{
                 this.setState({
-                    link:`https://bitterlinks.herokuapp.com/${res.data.hash}`,message:""
+                    link:`https://bitterlink-urlshortener.onrender.com/${res.data.hash}`,message:""
                 })
             }
         })
